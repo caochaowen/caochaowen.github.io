@@ -155,6 +155,216 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/25/Conda%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zilong.jpg">
+      <meta itemprop="name" content="草朝闻">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="草朝闻的学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/25/Conda%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Conda基本操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-25 16:31:13 / 修改时间：16:52:58" itemprop="dateCreated datePublished" datetime="2023-10-25T16:31:13+08:00">2023-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%B8%B8%E8%BD%AF%E4%BB%B6%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">日常软件知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="conda基本操作"><a href="#conda基本操作" class="headerlink" title="conda基本操作"></a>conda基本操作</h2><h3 id="一、conda虚拟环境只有3-5"><a href="#一、conda虚拟环境只有3-5" class="headerlink" title="一、conda虚拟环境只有3.5"></a>一、conda虚拟环境只有3.5</h3><p>在Anaconda3之前的版本中，conda所提供的虚拟环境仅支持Python 3.5及以下版本。这是因为在Python 3.6及以上版本中，标准库的部分模块从C语言重写为了Python，而这导致在conda虚拟环境中无法正常安装这些模块。因此，如果需要使用Python 3.6及以上版本，建议使用conda的另一个虚拟环境管理工具conda-forge。</p>
+<h3 id="二、如何给conda虚拟环境更换源"><a href="#二、如何给conda虚拟环境更换源" class="headerlink" title="二、如何给conda虚拟环境更换源"></a>二、如何给conda虚拟环境更换源</h3><p>conda虚拟环境默认使用的源是官方源，但是由于国内网络的原因，这种源的下载速度很慢。因此，我们可以将conda虚拟环境的源更换为国内源，例如清华大学源。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<p>运行以上代码后，我们就将conda虚拟环境的源更换为了清华大学源。如果需要更换其他源，只需要将以上代码中的链接替换成对应源的链接即可。</p>
+<h3 id="三、conda虚拟环境创建失败"><a href="#三、conda虚拟环境创建失败" class="headerlink" title="三、conda虚拟环境创建失败"></a>三、conda虚拟环境创建失败</h3><p>在创建conda虚拟环境时，可能会遇到一些问题导致创建失败。常见的问题有：</p>
+<p>1、缺少必要的依赖包</p>
+<p>如果创建时遇到缺少必要的依赖包，可以尝试用conda安装这些依赖包，然后再次尝试创建虚拟环境。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install packagename</span><br><span class="line">conda create --name envname python=x.x</span><br></pre></td></tr></table></figure>
+<p>2、权限不足</p>
+<p>如果创建虚拟环境的命令需要管理员权限，那么需要以管理员身份打开终端，或者将创建路径更换到可以写入的目录。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --prefix=/path/to/envname python=x.x</span><br></pre></td></tr></table></figure>
+<h3 id="四、conda虚拟环境迁移"><a href="#四、conda虚拟环境迁移" class="headerlink" title="四、conda虚拟环境迁移"></a>四、conda虚拟环境迁移</h3><p>在另一台机器或环境中使用原本的conda虚拟环境，可以通过以下步骤进行迁移：</p>
+<p>1、使用conda pack将虚拟环境打包成tar文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda pack -n envname</span><br></pre></td></tr></table></figure>
+<p>2、将tar文件传输到目标机器或环境</p>
+<p>3、在目标机器或环境中使用conda unpack解包tar文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -n envname /path/to/envname.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="五、conda虚拟环境损坏怎么办"><a href="#五、conda虚拟环境损坏怎么办" class="headerlink" title="五、conda虚拟环境损坏怎么办"></a>五、conda虚拟环境损坏怎么办</h3><p>如果conda虚拟环境出现问题，例如环境无法激活或者无法安装依赖包，可能是因为环境损坏。此时，可以尝试重建虚拟环境。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda env remove --name envname</span><br><span class="line">conda create --name envname python=x.x</span><br></pre></td></tr></table></figure>
+<p>以上代码将移除原环境并新建环境。如果需要将原环境中的包列表备份并迁移到新环境中，可以使用以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda list --export &gt; envname.txt</span><br><span class="line">conda create --name newenvname --file envname.txt</span><br></pre></td></tr></table></figure>
+<h3 id="六、conda虚拟环境是什么"><a href="#六、conda虚拟环境是什么" class="headerlink" title="六、conda虚拟环境是什么"></a>六、conda虚拟环境是什么</h3><p>conda虚拟环境就是一个隔离的Python环境，可以让用户在同一台机器上运行多个独立的Python环境。每个虚拟环境都有自己的Python解释器和依赖包，可以在不同的Python版本和依赖包之间轻松切换。这使得用户可以为不同的项目创建独立的Python环境，避免版本和依赖冲突等问题。</p>
+<h3 id="七、查看Anaconda虚拟环境"><a href="#七、查看Anaconda虚拟环境" class="headerlink" title="七、查看Anaconda虚拟环境"></a>七、查看Anaconda虚拟环境</h3><p>可以使用以下命令查看Anaconda中已经创建的虚拟环境：</p>
+<p>conda env list<br>以上代码将列出所有已经创建的虚拟环境及其路径。</p>
+<h3 id="八、conda虚拟环境生成不了"><a href="#八、conda虚拟环境生成不了" class="headerlink" title="八、conda虚拟环境生成不了"></a>八、conda虚拟环境生成不了</h3><p>如果使用conda创建虚拟环境出现问题，可以尝试以下解决方法：</p>
+<p>1、升级conda</p>
+<p>可以使用以下命令将conda更新至最新版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update conda</span><br></pre></td></tr></table></figure>
+<p>2、清除缓存</p>
+<p>conda的缓存可能会导致一些问题，可以使用以下命令清除缓存：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda clean --all</span><br></pre></td></tr></table></figure>
+<p>3、检查配置文件</p>
+<p>conda的配置文件可能被修改，导致出现问题。可以使用以下命令检查配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --show</span><br></pre></td></tr></table></figure>
+<h3 id="九、conda虚拟环境激活"><a href="#九、conda虚拟环境激活" class="headerlink" title="九、conda虚拟环境激活"></a>九、conda虚拟环境激活</h3><p>激活已经创建的conda虚拟环境，使用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda activate envname</span><br><span class="line">conda deactivate envname</span><br></pre></td></tr></table></figure>
+<p>在激活环境之后，所有的命令都将使用该环境中的Python解释器和依赖包。</p>
+<h3 id="十、conda虚拟环境在c盘选取"><a href="#十、conda虚拟环境在c盘选取" class="headerlink" title="十、conda虚拟环境在c盘选取"></a>十、conda虚拟环境在c盘选取</h3><p>默认情况下，conda虚拟环境会被安装在用户目录下，即C:\Users\username\Anaconda3\envs。如果需要将虚拟环境安装在其他地方，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n xxx python=xxx</span><br><span class="line">conda create --prefix=/path/to/envname python=x.x</span><br></pre></td></tr></table></figure>
+<p>以上代码会将虚拟环境安装在&#x2F;path&#x2F;to&#x2F;envname，可以将路径替换成需要安装的目录。</p>
+<h3 id="十一、删除"><a href="#十一、删除" class="headerlink" title="十一、删除"></a>十一、删除</h3><p>删除虚拟环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n your_env_name --all</span><br></pre></td></tr></table></figure>
+<p>删除环境中的某个包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name your_env_name package_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="十二、conda虚拟环境克隆"><a href="#十二、conda虚拟环境克隆" class="headerlink" title="十二、conda虚拟环境克隆"></a>十二、conda虚拟环境克隆</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n your_new_env_name --clone your_env_name</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>下载包到指定目录</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip download psycopg2 -d D:\MyDownload\ -i https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">psycopg2包名，-d指定路径，-i指定源</span><br></pre></td></tr></table></figure>
+<p><strong>anaconda查找包，并安装</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ananconda search -t conda conda包名  #查找安装的包</span><br><span class="line">anaconda show 网名/包名  #show的时候会在最后显示安装的命令</span><br><span class="line">conda install --channel https://conda.anaconda.org/menpo cyvlfeat #安装包</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/25/Tensorflow-GPU%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zilong.jpg">
+      <meta itemprop="name" content="草朝闻">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="草朝闻的学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/25/Tensorflow-GPU%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">Tensorflow_GPU环境安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-25 16:10:10 / 修改时间：16:52:46" itemprop="dateCreated datePublished" datetime="2023-10-25T16:10:10+08:00">2023-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%B8%B8%E8%BD%AF%E4%BB%B6%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">日常软件知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="TensorFlow2环境配置和安装教程"><a href="#TensorFlow2环境配置和安装教程" class="headerlink" title="TensorFlow2环境配置和安装教程"></a>TensorFlow2环境配置和安装教程</h1><h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>添加环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\ProgramData\Anaconda3</span><br><span class="line">C:\ProgramData\Anaconda3\Library</span><br><span class="line">C:\ProgramData\Anaconda3\Scripts</span><br></pre></td></tr></table></figure>
+<p>conda管理虚拟环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name test-tf python=3.8.15   # “test-tf”是你建立的conda虚拟环境的名字</span><br><span class="line">conda activate test-tf                    # 进入名为“test-tf”的conda虚拟环境</span><br><span class="line">conda env list                          # 列出所有Conda虚拟环境</span><br><span class="line">conda deactivate                       # 退出当前的Conda虚拟环境</span><br></pre></td></tr></table></figure>
+
+<h2 id="CUDA：11-2"><a href="#CUDA：11-2" class="headerlink" title="CUDA：11.2"></a>CUDA：11.2</h2><p>版本：严格按照官网建议下载安装<br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">https://developer.nvidia.com/cuda-toolkit-archive</a></p>
+<h2 id="cuDNN：8-1"><a href="#cuDNN：8-1" class="headerlink" title="cuDNN：8.1"></a>cuDNN：8.1</h2><p>版本：严格按照官网建议下载安装<br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-archive">https://developer.nvidia.com/rdp/cudnn-archive</a><br>解压后覆盖到CUDA的安装路径</p>
+<p>添加环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\bin</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\libnvvp</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\lib</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\include</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\CUPTI\lib64</span><br></pre></td></tr></table></figure>
+
+<p>检查CUDA配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd：nvcc –V</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\demo_suite</span><br></pre></td></tr></table></figure>
+<p>路径下执行cmd：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\bandwidthTest.exe</span><br><span class="line">.\deviceQuery.exe</span><br></pre></td></tr></table></figure>
+
+<p>TensorFlow：<strong>2.6.0</strong><br>版本：严格按照官网建议下载安装<br>pip install tensorflow&#x3D;&#x3D;2.6.0 -i <a target="_blank" rel="noopener" href="https://pypi.mirrors.ustc.edu.cn/simple">https://pypi.mirrors.ustc.edu.cn/simple</a><br>并不需要安装tensorflow-gpu  X  系统自动调用GPU  </p>
+<p>keras: <strong>2.6.0</strong><br>版本：和TensorFlow保持一致<br>pip install keras&#x3D;&#x3D;2.6.0 -i <a target="_blank" rel="noopener" href="https://pypi.mirrors.ustc.edu.cn/simple">https://pypi.mirrors.ustc.edu.cn/simple</a></p>
+<p>检查TensorFlow</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Anaconda Prompt：</span><br><span class="line">conda activate test-tf               #进入虚拟环境test-tf  </span><br><span class="line"></span><br><span class="line">python                           # 进入python环境</span><br><span class="line">import tensorflow as tf              # 导入TensorFlow</span><br><span class="line">tf.test.is_gpu_available()             # 查看GPU版本信息，并返回GPU是否可用</span><br><span class="line">tf.config.list_physical_devices(&#x27;GPU&#x27;)   # 查看服务类型</span><br><span class="line">exit()</span><br></pre></td></tr></table></figure>
+<p>Tips:<br>1.CUDA 核心数：决定训练速度<br>2.显存大小：决定可以训练多大的模型以及训练时的最大 Batch Size，对于较大规模的训练而言尤其敏感。<br>3.屏蔽GPU：<br>（1）：os.environ[“CUDA_VISIBLE_DEVICES”] &#x3D; “-1”      # 显卡开关<br>（2）：cpus &#x3D; tf.config.list_physical_devices (device_type&#x3D;‘CPU’)</p>
+<p>​				tf.config.set_visible_devices (devices&#x3D;cpus)<br>4.TensorFlow 2.1 默认安装（pip install tensorflow）就已经同时支持 CPU 和 GPU<br>5.CPU和GPU谁快：GPU 和 CPU 的选择与模型类型也有关系，例如如果是卷积神经网络则 gtx1050 可能胜过 i7，但如果是强化学习则不一定。</p>
+<p>官方建议构建配置：<br><a target="_blank" rel="noopener" href="https://tensorflow.google.cn/install/source_windows#gpu">https://tensorflow.google.cn/install/source_windows#gpu</a></p>
+<p><img src="https://cdn.statically.io/gh/caochaowen/blogimg@main/%E5%AE%98%E6%96%B9%E6%8F%90%E4%BE%9B%E7%9A%84%E7%BB%8F%E8%BF%87%E6%B5%8B%E8%AF%95%E7%9A%84%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE.272ewqt14h1c.webp"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/21/%E8%A5%BF%E7%93%9C%E4%B9%A6_%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -594,7 +804,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
